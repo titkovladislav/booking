@@ -1,9 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormControl, FormGroup } from "@angular/forms";
-
-
-// TODO: use onPush
+import { BookingService } from "../../services/booking.service";
 
 @Component({
   selector: 'app-dialog',
@@ -13,14 +11,14 @@ import { FormControl, FormGroup } from "@angular/forms";
 export class DialogComponent {
 
   constructor(
+    private mokApi: BookingService,
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  public application = new FormGroup({
+  public applicationForm = new FormGroup({
     surname: new FormControl(),
     name: new FormControl(),
-    patronymic: new FormControl(),
     start: new FormControl(),
     end: new FormControl(),
   })
@@ -29,9 +27,8 @@ export class DialogComponent {
     this.dialogRef.close()
   };
 
-  public createApplication():void {
-    const application = this.application.value
-    console.log(application)
+  public createApplication(room: string):void {
+    this.mokApi.postData({...this.applicationForm.value, room})
   };
 
 }

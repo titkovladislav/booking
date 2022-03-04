@@ -1,21 +1,16 @@
-export interface BookingElement {
+
+export interface BookingElementI {
   room: number;
   number: number;
   price: number;
-}
-
-export interface ClientI {
-  surname: string;
-  name: string;
-  patronymic: string;
-}
-
-export interface RangeI {
-  start: string;
-  end: string;
+  start: string
+  end: string
 }
 
 export interface ApplicationI {
-  client: ClientI;
-  range: RangeI;
+  surname: string;
+  name: string;
+  start: string;
+  end: string;
+  room: number
 }

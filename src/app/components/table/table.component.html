@@ -3,20 +3,20 @@
 
     <!-- Room Column -->
     <ng-container matColumnDef="room">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by rooms"> Номер </th>
-      <td mat-cell *matCellDef="let element"> {{element.room}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by rooms"> Room #</th>
+      <td mat-cell *matCellDef="let element"> {{element.room}}  </td>
     </ng-container>
 
     <!-- Number Column -->
     <ng-container matColumnDef="number">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by numbers"> Количество мест </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by numbers"> Number of seats </th>
       <td mat-cell *matCellDef="let element"> {{element.number}} </td>
     </ng-container>
 
     <!-- Price Column -->
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by prices"> Цена за день </th>
-      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by prices"> Price per day </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} $ </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

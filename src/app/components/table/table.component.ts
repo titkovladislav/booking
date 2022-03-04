@@ -1,14 +1,14 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {BookingElement} from "../../interfaces/booking-interfaces";
-import {BookingService} from "../../services/booking.service";
-import {MatDialog} from "@angular/material/dialog";
-import {Subject, takeUntil} from "rxjs";
-import {DialogComponent} from "../dialog/dialog.component";
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { BookingElementI } from "../../interfaces/booking-interfaces";
+import { BookingService } from "../../services/booking.service";
+import { MatDialog } from "@angular/material/dialog";
+import { Subject, takeUntil } from "rxjs";
+import { DialogComponent } from "../dialog/dialog.component";
+import { StoreFacade } from "../../store/store-facade";
 
-// TODO: use onPush
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -18,24 +18,26 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     public dialog: MatDialog,
-    private mokApi: BookingService
+    private mokApi: BookingService,
+    private storeFacade: StoreFacade,
   ) {}
 
   private unsubscribe$: Subject<void> = new Subject<void>();
-  // TODO: rename
-  private elementData: BookingElement[] = [];
+  private bookingData: BookingElementI[] = [];
   public displayedColumns: string[] = ['room', 'number', 'price'];
-  public dataSource = new MatTableDataSource<BookingElement>();
+  public dataSource = new MatTableDataSource<BookingElementI>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
+    this.storeFacade.data$.subscribe(a => console.log('data$', a));
+    this.storeFacade.getInitialState();
     this.mokApi.getData()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(value => this.elementData = value);
+      .subscribe(value => this.bookingData = value);
 
-    this.dataSource = new MatTableDataSource<BookingElement>(this.elementData);
+    this.dataSource = new MatTableDataSource<BookingElementI>(this.bookingData);
   }
 
   ngAfterViewInit() {
@@ -43,7 +45,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSource.sort = this.sort;
   }
 
-  openBookingDialog(room: any):void {
+  public openBookingDialog(room: any):void {
     this.dialog.open(DialogComponent, {
         width: '350px',
         data: { ...room },

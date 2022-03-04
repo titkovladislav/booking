@@ -16,12 +16,17 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
+import {NgxsModule} from "@ngxs/store";
+import {BookingState} from "./store/app.state";
+import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
+import { TableResultComponent } from './components/tableResult/table-result/table-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
-    DialogComponent
+    DialogComponent,
+    TableResultComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,8 @@ import { MatNativeDateModule } from "@angular/material/core";
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxsModule.forRoot([BookingState]),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
