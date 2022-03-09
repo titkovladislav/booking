@@ -2,7 +2,6 @@
   <h1 mat-dialog-title>Booking</h1>
   <h3>room: {{data.room}}</h3>
   <form mat-dialog-content [formGroup]="applicationForm">
-
     <mat-form-field appearance="fill">
       <mat-label>Surname</mat-label>
       <input matInput formControlName="surname" required>
@@ -22,9 +21,6 @@
 
       <mat-error *ngIf="applicationForm.controls['start'].hasError('matStartDateInvalid')">Неправильная дата</mat-error>
       <mat-error *ngIf="applicationForm.controls['end'].hasError('matEndDateInvalid')">Неправильная дата</mat-error>
-      <mat-error *ngIf="applicationForm.hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
     </mat-form-field>
   </form>
   <div mat-dialog-actions>

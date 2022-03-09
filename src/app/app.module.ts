@@ -20,13 +20,15 @@ import {NgxsModule} from "@ngxs/store";
 import {BookingState} from "./store/app.state";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import { TableResultComponent } from './components/tableResult/table-result/table-result.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
     DialogComponent,
-    TableResultComponent
+    TableResultComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

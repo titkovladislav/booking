@@ -1,10 +1,11 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { Injectable } from "@angular/core";
-import {AddApplicationAction, GetDataAction} from "./actions.store";
-import {ApplicationI, BookingElementI} from "../interfaces/booking-interfaces";
+import { AddApplicationAction, GetDataAction } from "./actions.store";
+import { ApplicationI, BookingElementI } from "../interfaces/booking-interfaces";
 
 export class BookingStateModel {
   mokData!: BookingElementI[];
+  filterData!: BookingElementI[];
   applications!: ApplicationI[];
 }
 
@@ -12,6 +13,7 @@ export class BookingStateModel {
   name: 'appstate',
   defaults: {
     mokData: [],
+    filterData: [],
     applications: []
   }
 })
@@ -23,6 +25,7 @@ export class BookingState {
   public static getDataSelector(state: BookingStateModel) {
     return state.mokData
   }
+
   @Selector()
   public static getApplicationsSelector(state: BookingStateModel) {
     return state.applications
@@ -34,7 +37,7 @@ export class BookingState {
   }
 
   @Action(AddApplicationAction)
-    AddApplicationAction({ getState, patchState }: StateContext<BookingStateModel>, { application }: AddApplicationAction){
+    AddApplication({ getState, patchState }: StateContext<BookingStateModel>, { application }: AddApplicationAction){
     const state = getState();
     patchState({applications: [...state.applications, application]})
   }

@@ -1,7 +1,7 @@
 import { ApplicationI, BookingElementI } from "../interfaces/booking-interfaces";
 
 export class GetDataAction {
-  static readonly type = 'get Data';
+  static readonly type = 'add mok Data';
 
   constructor( public mokData: BookingElementI[] ) {}
 }
