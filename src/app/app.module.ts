@@ -21,6 +21,7 @@ import {BookingState} from "./store/app.state";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import { TableResultComponent } from './components/tableResult/table-result/table-result.component';
 import { FilterComponent } from './components/filter/filter.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FilterComponent } from './components/filter/filter.component';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
     NgxsModule.forRoot([BookingState]),

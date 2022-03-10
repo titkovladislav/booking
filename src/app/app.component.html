@@ -1,5 +1,11 @@
-<header class="header">
-  <h1>Room reservation</h1>
-</header>
-<app-table></app-table>
-<app-table-result></app-table-result>
+<div class="wrapper">
+  <header class="header">
+    <mat-slide-toggle [color]="color" [formControl]="themeToggle">
+      Dark theme!
+    </mat-slide-toggle>
+    <h1>Room reservation</h1>
+  </header>
+  <app-table></app-table>
+  <app-table-result></app-table-result>
+</div>
+
